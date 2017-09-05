@@ -1,5 +1,18 @@
 # SAEN Longform Story Template #
 
+## Table of Contents ##
+
+- [Getting Started](#getting-started)
+- [Setting up the Repository](#setting-up-the-repository)
+- [Launching the Project](#launching-the-project)
+- [Asset Check](#asset-check)
+- [Building the Story](#building-the-story)
+- [Adding the Story to the WCM](#adding-the-story-to-the-wcm)
+- [Final Steps and Edits](#final-steps-and-edits)
+- [Common Errors and Problems](#common-errors-and-problems)
+
+-----
+
 This story template lets you spin up special presentations of longform journalism projects for use in the WCM. We've used this template on many projects, including:
 
 - [40 Days of Mourning](http://www.expressnews.com/40-days-of-mourning/)
