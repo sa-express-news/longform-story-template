@@ -725,7 +725,7 @@ We just created a new `build` folder containing big JavaScript and CSS files tha
 
 Head back to the S3 folder you created and upload _everything_ in the new `build` folder by dragging the contents onto the page and clicking `Upload` on the popup that appears.
 
-We're done with code for now. Time to take our story to ~~ the ninth circle of Hell ~~ the WCM.
+We're done with code for now. Time to take our story to ~~the ninth circle of Hell~~ the WCM.
 
 ## Adding the Story to the WCM ##
 
