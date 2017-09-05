@@ -48,7 +48,7 @@ You'll need the following programs installed on your computer to work through th
 
 Before starting on the story, we're going to set up a Git repository on our computer to house this project. If you're not familiar with Git, it basically allows you to take snapshots of files and folders. You can revert to any earlier snapshot if you screw something up, and Git will revert all the files to the state they were in at the moment of that snapshot.
 
-Git stores those files and folders in _repositories_. Repositories can also exist online, so anyone with access can copy them and work from them. This is extremely useful when you take a day off and someone else needs to make edits to the longform story - it lives online, not just on your machine, so it's easy for them to change and make a _new_ snapshot.
+Git stores those files and folders in _repositories_. Repositories can also exist online, so anyone with access can copy them and work from them. This is extremely useful when you take a day off and someone else needs to make edits to the longform story - it lives online, not just on your machine, so it's easy for them to change things and make a _new_ snapshot.
 
 We're going to do a few things in this section:
 
@@ -88,14 +88,18 @@ Once you're a member of the organization, head to [the longform template reposit
 
 Head back to the command line, and work to the directory where you want to create the story folder. You can use `cd` to move from one folder to another:
 
-`~/Desktop/$ cd Code`
-`~Desktop/Code/$ cd Projects`
-`~Desktop/Code/Projects/$ now we're where we want to be!`
+```
+~/Desktop/$ cd Code
+~Desktop/Code/$ cd Projects
+~Desktop/Code/Projects/$ now we're where we want to be!
+```
 
 Use `cd ../` to move up one level if you go too far:
 
-`~Desktop/Code/Projects/$ cd ../`
-`~Desktop/Code/$ yeah, this is good.`
+```
+~Desktop/Code/Projects/$ cd ../
+~Desktop/Code/$ yeah, this is good.
+```
 
 Note that it doesn't really _matter_ where you clone the repo, as long as it's a place you can access whenever you need to. We'll run the clone command like so:
 
@@ -143,9 +147,11 @@ This says, "Remove (rm) the remote repository known as origin from your memory."
 
 `Desktop/Code/my-awesome-story/$ git remote -v`
 
-Nothing should happen when you hit enter. That's great! Now we can add the repo we just created on GitHub as the remote origin:
+Nothing should happen when you hit enter. That's great! Now we can add the repo we just created on GitHub as the remote origin. This was my command:
 
 `Desktop/Code/my-awesome-story/$ git remote add origin https://github.com/sa-express-news/my-awesome-story.git`
+
+You'll want to look at the section on the GitHub page you just created that says "push an existing repository" to get the exact link to your repo instead of `https://github.com/sa-express-news/my-awesome-story.git`.
 
 One last step: let's push all the work we've done so far up to GitHub. Run the following command:
 
@@ -199,7 +205,7 @@ npm WARN sass-loader@6.0.6 requires a peer of webpack@^2.0.0 || >= 3.0.0-rc.0 ||
 
 These are not urgent and for the purposes of this guide, we'll ignore them. (Oh - and if you get an error running your install, you may need to do a `sudo npm install` instead to run it as a superuser.)
 
-Now that everything is installed, we can run our other NPM commands to work with the project. Get back into the terminal and run `npm run start`. You should see a few things happening - wait a while until you...
+Now that everything is installed, we can run our other NPM commands to work with the project. Get back into the terminal and run `npm run start`. You should see a few things happening - wait a while until you see...
 
 Ta-da! The terminal just opened a new tab in your internet browser. When that tab finishes loading, you should see a longform story!
 
@@ -220,16 +226,7 @@ So how does this all work? Well, like I mentioned above, the story lives in an A
 
 Let's make a quick edit to the story to see how it all works.
 
-Open up the entire project folder in your text editor like Sublime or Visual Studio Code. You'll see a pretty overwhelming list of files and folders - but don't worry, you don't have to touch most of them:
-
-```
-config/ - Configuration files. Don't worry about these
-node_modules/ - Where NPM installed all the packages we need. Don't worry about these
-public/ - Some minor setup files you don't need to worry about
-scripts/ - How we tell npm what to do when we run commands like 'npm run start', nothing to worry about
-src/ - The only actual folder we'll be working out of.
-```
-You can also safely ignore all of the files in that root directory, like `package.json` and `gulpfile.js`
+Open up the entire project folder in your text editor like Sublime or Visual Studio Code. You'll see a pretty overwhelming list of files and folders - but don't worry, you don't have to touch most of them. We'll mostly work out of the `src/` folder.
 
 Open up the `src` folder and look for the `story.aml` file. Open that up and you should see something like the following at the top:
 
@@ -262,7 +259,7 @@ You can follow this flow with all of the edits you make: edit the `story.aml` fi
 
 ## Asset Check ##
 
-Okay, got your story text? Got a headline and subhead? Got all your photos, captions and cutlines? Great - time for the most obnoxious part of this whole process - surprise, it involves the WCM!
+Okay, got your story text? Got a headline and subhead? Got all your photos, captions and cutlines? Great - time for the most obnoxious part of this whole process. Surprise, it involves the WCM!
 
 If you perused the `story.aml` file, you probably saw various links to what looked like photos. That's how the React app knows where to pull the images from your story - they don't live direcly in `story.aml` like text does; we merely pass along a link.
 
@@ -272,9 +269,9 @@ Well, that means we actually have to _host_ the images somewhere. As of writing 
 2. Bulk upload the photos to the WCM.
 3. Find the photos in the WCM to get the links, which we can add - with a slight tweak - to `story.aml`.
 
-By now I'll assume you've got the photos. The link to the WCM bulk uploader is in the Premium Eds Google Drive accounts document under "WCM bulk uploader for photos," use the credentials listed there to log in.
+By now I'll assume you've got the photos. The link to the WCM bulk uploader is in the Premium Eds Google Drive accounts document under "WCM bulk uploader for photos," and you can use the credentials listed there to log in.
 
-Once you're in, you'll see a really fancy box where you can drop photos. Drag and drop all the photos the photo department gave you into that box, and you should see them begin to upload. You'll need a caption, credit and keywords for each one. Usually it's good about pulling captions and credits from the photo metadata.
+Once you're in, you'll see a really fancy box where you can drop photos. Drag and drop all the photos into that box, and you should see them begin to upload. You'll need a caption, credit and keywords for each one. Usually it's good about pulling captions and credits from the photo metadata.
 
 As for credits, there's a way to apply them to every photo at once. Head near the top of the page and find the "Apply to Selected" box - anything you add here will add to all of the photos you've selected (the little checkbox in the top-right corner of every photo).
 
@@ -455,7 +452,7 @@ text: “I’ll come back, I’ll come back,” Mohamad Sharib Bin Mohamad Ali, 
 {}
 ```
 
-Take another look at your browser and marvel at the amazing dropcap Adrian on the design team came up with. When you're done with that, feel free to do another round of `git add .` - `git commit -m "What I did` - `git push origin master`.
+Take another look at your browser and marvel at the amazing dropcap Adrian on the design team came up with. When you're done with that, feel free to do another round of `git add .` - `git commit -m "What I did"` - `git push origin master`.
 
 You'll probably want a couple of regular paragraphs after your fancy intro one. Well, luckily paragraphs are crazy easy: you just paste 'em in.
 
@@ -550,11 +547,11 @@ Every photo needs a source, caption and cutline, laid out similarly to the above
 
 - `full`: The photo will take up most of the screen's height and width on all screen sizes. Use for showstoppers.
 
--`small-left`:The photo will be full width on small screens, mostly full width on medium-size screens (like tablets) and small, floated to the left of text, on big screens like desktop computers. Use for things like mugshots and other tangential pictures.
+- `small-left`:The photo will be full width on small screens, mostly full width on medium-size screens (like tablets) and small, floated to the left of text, on big screens like desktop computers. Use for things like mugshots and other tangential pictures.
 
--`small-right`: Same as `small-left`, but the photo will float to the right of the text on large screens instead of to the left.
+- `small-right`: Same as `small-left`, but the photo will float to the right of the text on large screens instead of to the left.
 
-You _can_ stack multiple photos on top of each other, but it doesn't look great and I'd recommend against it. Instead, better to use the slideshow.
+You _can_ stack multiple photos on top of each other, but it doesn't look great and I'd recommend against it. Better to use the slideshow instead.
 
 #### Slideshows ####
 
@@ -659,7 +656,7 @@ class App extends Component {
 If you're familiar with HTML, this should look like a freakish bastardization of it. It basically is. Only one thing you need to do here: See the link to `https://myaccount.expressnews.com`? Swap that link out for your new subscribe link, like so:
 
 ```
-            <SubscribeFooter link='YOUR LINK HERE'/>
+<SubscribeFooter link='YOUR LINK HERE'/>
 ```
 
 Save this file and close it without making any other changes. Reload the story and hover over the "Subscribe" at the bottom of the page; the link should match the one you just entered.
@@ -720,7 +717,7 @@ You can control this with the homepage field in your package.json.
 The build folder is ready to be deployed.
 ```
 
-We just created a new `build` folder containing big JavaScript and CSS files that control the logic and presentation of our story template. Copy down the names of those files - `main.01c2a651.js` and `main.141dd7d2.css` in my case; we'll use them in the WCM.
+We just created a new `build` folder containing big JavaScript and CSS files that control the logic and presentation of our story template. Copy down the names of those files - `main.01c2a651.js` and `main.141dd7d2.css` in my case - because we'll use them in the WCM.
 
 Head back to the S3 folder you created and upload _everything_ in the new `build` folder by dragging the contents onto the page and clicking `Upload` on the popup that appears.
 
@@ -733,7 +730,7 @@ Here's a 10,000-foot view of what we need to do in the WCM:
 1. Create a freeform housing links to the JavaScript and CSS files we just created.
 2. Create a new site section that will house the freeform.
 3. Add the freeform and another one we use for these projects to the site section.
-4. Send the link to the story to editors, reporters and photographers
+4. Send the link to the story to editors, reporters and photographers.
 5. Light a big fat cigar and go home.
 
 ### Creating the Freeform ###
@@ -763,8 +760,10 @@ Here's what mine looks like to start:
 ```
 We need to change two things: the `<link>` tag to the project CSS and the `<script>` tag to the project JavaScript. This is why you needed to keep track of the names of the files we created earlier. (Don't worry if you didn't - they're still in S3 and your `build` folder). Remember to _also_ change the project folder in the links, like so:
 
-`<link href="//projects.expressnews.com.s3-website-us-east-1.amazonaws.com/S3-FOLDER-HERE/static/css/main.CSS FILE NAME.css"
-    rel="stylesheet">` 
+```html
+<link href="//projects.expressnews.com.s3-website-us-east-1.amazonaws.com/S3-FOLDER-HERE/static/css/main.CSS FILE NAME.css"
+    rel="stylesheet">
+```
 
 ```html
 <script type="text/javascript" src="http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/S3-FOLDER HERE/static/js/main.JS FILE NAME.js"></script>
@@ -778,17 +777,17 @@ Like the freeform, we're going to copy another site section used for this purpos
 
 Set the following items under the `Properties` tab:
 
-`Title:` This is the title in the WCM _and_ the page's title in the browser. Style is `Name of project | San Antonio Express-News`.
-`Channel Code:` This is the URL for the page. `40-days-of-mourning` would become `http://www.expressnews.com/40-days-of-mourning`.
-`Description`: The description for the section in the WCM. I usually just copy the story's subheadline in here.
-`Meta Description`: The string that will (usually) show up in search engine results displaying this page. Limited to 160 characters; it should match the content of the story. ([More on good meta descriptions, if you're interested](https://yoast.com/meta-descriptions/))
-`Facebook og: Image Override:` You need to set this so the proper image shows up when the story is shared on Facebook. Typically it makes sense to use the lead photo here.
+- `Title:` This is the title in the WCM _and_ the page's title in the browser. Style is `Name of project | San Antonio Express-News`.
+- `Channel Code:` This is the URL for the page. `40-days-of-mourning` would become `http://www.expressnews.com/40-days-of-mourning`.
+- `Description`: The description for the section in the WCM. I usually just copy the story's subheadline in here.
+- `Meta Description`: The string that will (usually) show up in search engine results displaying this page. Limited to 160 characters; it should match the content of the story. ([More on good meta descriptions, if you're interested](https://yoast.com/meta-descriptions/))
+- `Facebook og: Image Override:` You need to set this so the proper image shows up when the story is shared on Facebook. Typically it makes sense to use the lead photo here.
 
 Save, then head over to the `Design` tab of your section. If you've ever worked with the home page or other site pages, this is exactly the same thing - but there's only one "zone" to worry about.
 
 Before adding the freeform you just created, add the EN freeform with the ID of `81488` titled "React Template - CSS overrides (white bg)." (This just cleans up some ugliness the WCM creates)
 
-Add your freeform underneath the CSS overrides one, save the section and preview it. After all that work, you should see a gorgeous custom story that _you_ just built. Publish the section, send the link out and light your cigar.
+Add your freeform underneath the CSS overrides one, save the section and preview it. After all that work, you should see a gorgeous custom story that _you_ just built. Publish the section, send the link out - but don't light your cigar just yet.
 
 ## Final Steps and Edits ##
 
@@ -833,7 +832,7 @@ Oh yeah, we should probably advertise this story, right? Believe it or not, crea
 
 When you head to the freeform generator, switch to the "Story" tab and start filling in the relevant information like headline and chatter. For the link, you'll want the link to the _site section_ where the presentation lives - _not_ the freeform we created earlier.
 
-I typically use the lead image (and OG image) in the freeform generator. And you definitely _should_ tick that "EN exclusive" box.
+I typically use the lead image in the freeform generator. And you definitely _should_ tick that "EN exclusive" box.
 
 Click the "Build freeform" button and copy the code that spits out. Now go _back_ to the WCM and create _another_ freeform. Drop the code in there, name it something like "EN Home Page Tease for My Awesome Story" and throw it in your home page zone of choice when the story is ready to go live to the masses.
 
