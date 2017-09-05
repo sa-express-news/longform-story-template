@@ -634,7 +634,6 @@ Let's commit our work before making a few last tweaks.
 
 `Desktop/Code/my-awesome-story/$ git push origin master`
 
-
 #### Adding the Footer Subscribe Link ####
 
 You'll notice we haven't touched the footer at the bottom of the template urging readers to subscribe. That's built similarly to the subscribe component noted above, it just doesn't live in `story.aml`. We're going to edit a bit of the underlying React code to make sure we have the correct subscribe link (you should always get a new one from an executive producer like Graham Watson-Ringo for each new story).
@@ -827,6 +826,16 @@ export default () => (
 ); 
 ```
 Change those last three links to the URL of your story. Then run the update process: `gulp`, `npm run start` to test the changes, commit the changes to GitHub, `npm run build` to create new files, upload to S3, update the freeform, make sure all is well with the section preview.
+
+### Adding the Story to the Home Page ###
+
+Oh yeah, we should probably advertise this story, right? Believe it or not, creating a freeform to showcase big stories on the home page of [expressnews.com](http://www.expressnews.com) is pretty simple. We have [a freeform generator](https://s3.amazonaws.com/projects.expressnews.com/freeform-generator/index.html) to do just that.
+
+When you head to the freeform generator, switch to the "Story" tab and start filling in the relevant information like headline and chatter. For the link, you'll want the link to the _site section_ where the presentation lives - _not_ the freeform we created earlier.
+
+I typically use the lead image (and OG image) in the freeform generator. And you definitely _should_ tick that "EN exclusive" box.
+
+Click the "Build freeform" button and copy the code that spits out. Now go _back_ to the WCM and create _another_ freeform. Drop the code in there, name it something like "EN Home Page Tease for My Awesome Story" and throw it in your home page zone of choice when the story is ready to go live to the masses.
 
 ## Common Errors and Problems ##
 
