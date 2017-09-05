@@ -469,3 +469,362 @@ Your story may be significantly longer, and that's fine. I recommend adding just
 
 ### The Remaning Sections - Text Only, Please! ###
 
+Let's move through the rest of the sections, adding just the text so we can make a second pass through and sprinkle in other assets.
+
+Here's section two in the current `story.aml`:
+
+```
+[+sections.2]
+
+sectionheading: Agent gets involved
+
+Bassey’s trail to San Antonio was carved by Hennssy Auriantal, a Canadian from Montreal and former basketball player at the University of Wisconsin who worked as an assistant coach at Jackson State University in Mississippi. 
+
+St. Anthony hired him as an athletic coordinator in 2015-16.
+
+etc., etc.
+[]
+```
+
+Rip everything between the opening and closing `[]`s and paste all your text in the middle instead. On top, bring back the `sectionheading`, swapping out "Agent gets involved" for your appropriate subhead. I did it like so:
+
+```
+[+sections.2]
+
+sectionheading: Holiday tragedy
+
+Mohamad Sharib drove. He had found work and offered to make payments on the family’s secondhand Mitsubishi Outlander. He didn’t swim but had been to Medina Lake before and now brought his parents and brother for a picnic. Relatives and friends came in two other vehicles.
+
+“We didn’t realize it was a holiday,” said his mother, Zahidah Begum Binti Ali Miah. “I got up early that day and made breakfast at 6 a.m.” She gave Mohamad Sharib his breakfast before he left for work at a juice factory, but he was back before lunch, saying he had a half day off.
+Zahidah, unhappy with the long trip to the lake, wanted to eat and leave.
+
+“I wasn’t feeling it,” she said. “I didn’t realize it was that far.”
+
+etc., etc.
+[]
+```
+
+Rinse and repeat this process until you've added all the text into the story. Run `gulp` on the command line to generate a new JSON file containing your story. Check your browser, doing an `npm run start` if necesssary, and you should see one verrrrrry long story punctured with the occasional red, bolded subheadings.
+
+Looking good? Alright, let's commit to GitHub.
+
+`Desktop/Code/my-awesome-story/$ git add .`
+
+`Desktop/Code/my-awesome-story/$ git commit -m "Added all story text"`
+
+`Desktop/Code/my-awesome-story/$ git push origin master`
+
+Now comes the good part. We're going to start back at the top of the story, adding photos and pull quotes and other goodies to make the presentation really shine.
+
+### Photos, Pullquotes and Other Cool Assets ###
+
+Depending on the type of story you're building, you may need all or just a few of the assets listed here. No matter which you choose, the process for adding them to the story works the same: Just slot them into the `story.aml` file. Here are guides for how to use the various assets:
+
+#### Photos - the Game of Alignment ####
+
+Just want a big fat photo in the middle of your story? Here's the code:
+
+```
+{.photo}
+source: http://ww2.hdnux.com/photos/64/65/40/13850661/3/rawImage.jpg
+caption: Zahidah's life has constantly revolved around raising her five children and now her grandchildren. After Mohamad Sharib's untimely departure she finds some respite in raising her grandchildren especially the youngest of them all, Mohamad Faisal, 1. "Sometimes I remember Sharib when I am putting the baby to sleep," she said. "He was a good uncle and loved his nephews."
+cutline: Srijita Chattopadhyay / San Antonio Express-News
+type: full
+{}
+```
+
+Every photo needs a source, caption and cutline, laid out similarly to the above. The last property, `type`, is where the customization comes in. Here are the different values you can set for `type` and what they'll do to the photo:
+
+- `full`: The photo will take up most of the screen's height and width on all screen sizes. Use for showstoppers.
+
+-`small-left`:The photo will be full width on small screens, mostly full width on medium-size screens (like tablets) and small, floated to the left of text, on big screens like desktop computers. Use for things like mugshots and other tangential pictures.
+
+-`small-right`: Same as `small-left`, but the photo will float to the right of the text on large screens instead of to the left.
+
+You _can_ stack multiple photos on top of each other, but it doesn't look great and I'd recommend against it. Instead, better to use the slideshow.
+
+#### Slideshows ####
+
+Slideshows package multiple photos together into...well, a slideshow. Users can navigate them with the buttons on either side or by swiping on the photos. Here's the code for a slideshow:
+
+```
+[.slideshow]
+
+source: http://ww1.hdnux.com/photos/62/37/65/13237588/3/rawImage.jpg
+caption: A helicopter surveys the bus submerged in the Guadalupe River after the July 17, 1987 flood that killed 10 teenagers near Comfort, Texas.
+cutline: Express-News file photo
+
+source: http://ww4.hdnux.com/photos/62/37/65/13237587/3/rawImage.jpg
+caption: Campers wait after being rescued from the floodwaters near Comfort, Texas.
+cutline: Express-News file photo
+
+source: http://ww2.hdnux.com/photos/62/37/65/13237589/3/rawImage.jpg
+caption: First responders used helicopters to rescue children clinging to trees.
+cutline: Express-News file photo
+
+[]
+```
+
+Couple differences from regular photos:
+
+- Slideshows start and end with `[]`, not `{}`.
+- Each photo in a slideshow does _not_ have its own `{}` to start and end.
+- You don't set a `type` on slideshow photos.
+
+#### Pullquotes ####
+
+Pullquotes are great when you have a particularly strong quote that you want to break out of the main story text. Pull quotes take up the full screen width on small screens, and float to the left on medium-sized screens and above.
+
+```
+{.pullquote}
+quote: Wherever he goes, there would be a lot of questions that need to be answered.
+source: John Q. Public
+{}
+```
+
+Put the actual quote you want to highlight after `quote:` and the source of the quote after `source:`.
+
+#### The Subscribe Box ####
+
+We use the subscribe box to beg for readers' money. It's pretty simple: A box with a heading, some text and a button the user can click to subscribe to the Express-News. Subscribe boxes take up the full width of the screen on small screens and float to the right of story text on large phones and above.
+
+```
+{.subscribe}
+link: https://myaccount.expressnews.com/dssSubscribe.aspx?pid=889&z=00000
+{}
+```
+
+The heading and flavor text are set for you, so all you need is a link from an EP like Graham Watson-Ringo. Remember to swap this out every time - it's a unique link to track subscriptions from _this_ story, so it wouldn't do much good to use the same one across many stories.
+
+#### Credits ####
+
+We use credits at the very end of the last section of a story. This is an array, not an object, so remember to use `[]` instead of `{}`. Every credit gets added to a sleek little box and bolded.
+
+```
+[.credits]
+credit: adam.zuvanich@express-news.net
+credit: Twitter: @AZuvanich
+[]
+```
+
+You can add as many of these as you like, should you need to credit a photographer, multiple reporters, etc. And note that you can still use a colon after the `credit:` without messing anything up - the second credit here will render on the page as `Twitter: @AZuvanich`.
+
+### Final Touches ###
+
+And just like that, we're (mostly) done building our freeform story. Pull an `npm run start` to check your progress. By now, none of the text or images from the template should be left - you should have a completely new story.
+
+Let's commit our work before making a few last tweaks.
+
+`Desktop/Code/my-awesome-story/$ git add .`
+
+`Desktop/Code/my-awesome-story/$ git commit -m "Added photos and other components"`
+
+`Desktop/Code/my-awesome-story/$ git push origin master`
+
+
+#### Adding the Footer Subscribe Link ####
+
+You'll notice we haven't touched the footer at the bottom of the template urging readers to subscribe. That's built similarly to the subscribe component noted above, it just doesn't live in `story.aml`. We're going to edit a bit of the underlying React code to make sure we have the correct subscribe link (you should always get a new one from an executive producer like Graham Watson-Ringo for each new story).
+
+So far, we've been working in `story.aml` in the `src/` folder of our project. Now open `src/components/App/index.jsx` in your code editor. Look for the section that looks like this:
+
+```javascript
+class App extends Component {
+  render() {
+    return (
+      <div className='App'>
+          <StoryTopContainer data={Story.top} />
+          <div className='Story'>
+            <Sections sections={Story.sections}/>
+            <SubscribeFooter link='https://myaccount.expressnews.com/dssSubscribe.aspx?pid=889&z=00000'/>
+          </div>
+      </div>
+    );
+  }
+}
+```
+
+If you're familiar with HTML, this should look like a freakish bastardization of it. It basically is. Only one thing you need to do here: See the link to `https://myaccount.expressnews.com`? Swap that link out for your new subscribe link, like so:
+
+```
+            <SubscribeFooter link='YOUR LINK HERE'/>
+```
+
+Save this file and close it without making any other changes. Reload the story and hover over the "Subscribe" at the bottom of the page; the link should match the one you just entered.
+
+Commit time!
+
+`Desktop/Code/my-awesome-story/$ git add .`
+
+`Desktop/Code/my-awesome-story/$ git commit -m "Added footer subscribe link"`
+
+`Desktop/Code/my-awesome-story/$ git push origin master`
+
+#### Creating a Project Folder on AWS ####
+
+By now the story looks amazing on your computer - but we need to host it online so others can see it, too. Luckily we already have an account with [Amazon Web Services](https://aws.amazon.com/) to do just that.
+
+Find our AWS account credentials in the SAEN Premium Eds' accounts Google Doc. Upon logging in, you'll see a big list of AWS services; find or search for S3 and click on it. (S3 stands for Simple Storage Service, in case you're curious)
+
+You'll now be confronted with a giant list of S3 "buckets" - basically just folders we host on the internet. Search for and open the `projects.expressnews.com` bucket by clicking on its name.
+
+We need to create a new folder, which just takes clicking the "Create folder" button and giving it a name. Makes sense to match it with the folder we used for our project, so I went with `my-awesome-story`. Keep note of the folder's name, though - you'll need it shortly.
+
+#### Setting the Project Path ####
+
+We're about to use a new npm command to bundle our whole project up into a couple files we'll use to serve it to others. First, though, we need to tell it where those files will eventually be hosted.
+
+Go up one level from the `src/` directory and open `package.json`. You're going to see a _lot_ here, as this is where we're tracking which packages we need to run the project and setting up some other things. Look for this line:
+
+`"s3Bucket": "http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/longform-template",`
+
+This is the URL to the S3 bucket where our story will be hosted. _Nothing will work_ if you don't tweak this setting, but it's real easy. Just swap out the end of the URL where it says `longform-template` with the name of the folder you just created on S3. In my case, this line looked like so:
+
+`"s3Bucket": "http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/my-awesome-story",`
+
+We're about to throw our story on S3 (and then the WCM), so it's time for a Git commit:
+
+`Desktop/Code/my-awesome-story/$ git add .`
+
+`Desktop/Code/my-awesome-story/$ git commit -m "Set S3 path"`
+
+`Desktop/Code/my-awesome-story/$ git push origin master`
+
+#### Building and Hosting the Project ####
+
+Head back to the command line where we've been running `npm run start` - this time, though, run an `npm run build`. After a brief delay, you should see a success message like this:
+
+```
+Compiled successfully.
+
+File sizes after gzip:
+
+  136.89 KB  build/static/js/main.01c2a651.js
+  2.36 KB    build/static/css/main.141dd7d2.css
+
+The project was built assuming it is hosted at http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/my-awesome-story/.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+```
+
+We just created a new `build` folder containing big JavaScript and CSS files that control the logic and presentation of our story template. Copy down the names of those files - `main.01c2a651.js` and `main.141dd7d2.css` in my case; we'll use them in the WCM.
+
+Head back to the S3 folder you created and upload _everything_ in the new `build` folder by dragging the contents onto the page and clicking `Upload` on the popup that appears.
+
+We're done with code for now. Time to take our story to ~~ the ninth circle of Hell ~~ the WCM.
+
+## Adding the Story to the WCM ##
+
+Here's a 10,000-foot view of what we need to do in the WCM:
+
+1. Create a freeform housing links to the JavaScript and CSS files we just created.
+2. Create a new site section that will house the freeform.
+3. Add the freeform and another one we use for these projects to the site section.
+4. Send the link to the story to editors, reporters and photographers
+5. Light a big fat cigar and go home.
+
+### Creating the Freeform ###
+
+I like this part because it's half done for us already. Head to the Express-News side of the WCM and search for the freeform with the ID `83062`. Clone it and give it a new name - in my case it was "My Awesome Story React App". Copy everything in the Content section and paste it into a text editor; it's just HTML and editing in the WCM sucks.
+
+Here's what mine looks like to start:
+
+```html
+<style>
+    div#container {
+        overflow-x: hidden;
+    }
+
+    div.hc_sitefooter,
+    div.ad-bottom {
+        position: relative;
+        z-index: 1000;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css?family=Sanchez%7CSuez+One" rel="stylesheet">
+<link href="//projects.expressnews.com.s3-website-us-east-1.amazonaws.com/40-days-mourning-story/static/css/main.141dd7d2.css"
+    rel="stylesheet">
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+<script type="text/javascript" src="http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/40-days-mourning-story/static/js/main.d1dba3fa.js"></script>
+```
+We need to change two things: the `<link>` tag to the project CSS and the `<script>` tag to the project JavaScript. This is why you needed to keep track of the names of the files we created earlier. (Don't worry if you didn't - they're still in S3 and your `build` folder). Remember to _also_ change the project folder in the links, like so:
+
+`<link href="//projects.expressnews.com.s3-website-us-east-1.amazonaws.com/S3-FOLDER-HERE/static/css/main.CSS FILE NAME.css"
+    rel="stylesheet">` 
+
+```html
+<script type="text/javascript" src="http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/S3-FOLDER HERE/static/js/main.JS FILE NAME.js"></script>
+```
+
+Pop your edited HTML back into the freeform, save and publish it. Time to make a site section.
+
+### Creating the Site Section ###
+
+Like the freeform, we're going to copy another site section used for this purpose to cut down on extra work. In the WCM menu, head to `Manage > Sections` and open the one titled `40 Days of Mourning | San Antonio Express-News`. Clone it, unlock the copy you just made and let's get to work. 
+
+Set the following items under the `Properties` tab:
+
+`Title:` This is the title in the WCM _and_ the page's title in the browser. Style is `Name of project | San Antonio Express-News`.
+`Channel Code:` This is the URL for the page. `40-days-of-mourning` would become `http://www.expressnews.com/40-days-of-mourning`.
+`Description`: The description for the section in the WCM. I usually just copy the story's subheadline in here.
+`Meta Description`: The string that will (usually) show up in search engine results displaying this page. Limited to 160 characters; it should match the content of the story. ([More on good meta descriptions, if you're interested](https://yoast.com/meta-descriptions/))
+`Facebook og: Image Override:` You need to set this so the proper image shows up when the story is shared on Facebook. Typically it makes sense to use the lead photo here.
+
+Save, then head over to the `Design` tab of your section. If you've ever worked with the home page or other site pages, this is exactly the same thing - but there's only one "zone" to worry about.
+
+Before adding the freeform you just created, add the EN freeform with the ID of `81488` titled "React Template - CSS overrides (white bg)." (This just cleans up some ugliness the WCM creates)
+
+Add your freeform underneath the CSS overrides one, save the section and preview it. After all that work, you should see a gorgeous custom story that _you_ just built. Publish the section, send the link out and light your cigar.
+
+## Final Steps and Edits ##
+
+You will invariably need to edit this story. Someone will notice a typo; someone's name will be misspelled; someone will ask you to add a couple photos at the last minute. Making edits is easy, if somewhat tedious. Here's the process:
+
+1. Open `story.aml` and make whatever changes are needed.
+2. Run `gulp` on the command line to transform the ArchieML into JSON.
+3. (Optional but recommended) do an `npm run start` to make sure the story looks right on your machine after the changes.
+4. Commit your changes to GitHub.
+5. Run `npm run build` and wait for it to rebuild your `build` folder. Keep track of the names of the CSS and JS files created.
+6. Reupload the `build` folder to your S3 folder (don't worry - it won't overwrite the old stuff, just add the new ones)
+7. Jump back into your story freeform (not the section). Update the links to the new CSS and JS files and republish.
+8. Preview the section to make sure the changes took.
+
+You don't ever need to republish the site section; it pulls everything from the freeform, so as long as you republish that you're good.
+
+However, the WCM has a built-in lag time. Changes to the freeform may take about half an hour to show up on the actual project URL. Previewing the section will show you the changes immediately.
+
+To prove how easy edits are, let's do one real quick. This is actually important, so don't skip it!
+
+### Updating the Social Links ###
+
+If you click one of the social buttons near the top of your story, you'll be very close to sharing...A story about basketball. That's because the links in those buttons are set dynamically and we never updated them from the default. The process is similar to when we changed the link in the footer.
+
+Open up `src/components/SocialBlock/index.jsx` and look for this section:
+
+```javascript
+export default () => (
+  <div className="SocialBlock">
+    <Social type='logo' link='http://www.expressnews.com/' />
+    <Social type='facebook' link='http://www.expressnews.com/st-anthony-basketball-ticket-to-top/' />
+    <Social type='twitter' link='http://www.expressnews.com/st-anthony-basketball-ticket-to-top/' />
+    <Social type='reddit' link='http://www.expressnews.com/st-anthony-basketball-ticket-to-top/' />
+  </div>
+); 
+```
+Change those last three links to the URL of your story. Then run the update process: `gulp`, `npm run start` to test the changes, commit the changes to GitHub, `npm run build` to create new files, upload to S3, update the freeform, make sure all is well with the section preview.
+
+## Common Errors and Problems ##
+
+__I don't see my changes reflected in the story!__
+
+Did you remember to transform your ArchieML into JSON with `gulp`? None of the changes you make to `story.aml` will show up without that step. Head to the root of your project on the command line and type `gulp`. Re-run `npm run start` (or let it recompile the app if it's already running) and your changes should take.
+
+__The page on the EN website is showing an old version of the story!__
+
+Remember, it takes 30+ minutes for that version to update with the most recent changes. If you recently made changes to the story and updated the freeform, try the preview link, i.e.:
+
+`http://preview.cmf.expressnews.com/YOUR-STORY-LINK/`
+
+If the changes _do_ reflect there, nothing to worry about - you're just waiting for the live page to catch up.
