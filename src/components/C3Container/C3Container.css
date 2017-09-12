@@ -1,0 +1,18 @@
+/* .C3Container{
+    margin: 0 auto;
+    width: 95%;
+} */
+
+@media (min-width: 768px){
+    .C3Container{
+        margin: 0 auto;
+        width: 80%;
+    }
+}
+
+@media (min-width: 1024px){
+        .C3Container{
+        margin: 0 auto;
+        width: 56%;
+    }
+}
