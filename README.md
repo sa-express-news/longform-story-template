@@ -887,7 +887,7 @@ To create a production build, use yarn run build.
 gulp
 ```
 
-If so, gulp isn't working because you're already running the `npm run start` process in the current terminal window. You _could_ use `CTRL + C` or `CMD + C` to stop the process, but then you'd have to restart it after `gulp`ing.
+If so, Gulp isn't working because you're already running the `npm run start` process in the current terminal window. You _could_ use `CTRL + C` or `CMD + C` to stop the process, but then you'd have to restart it after `gulp`ing.
 
 Instead, open a new terminal tab by pressing `CMD + T` (Mac) or `CMD + Shift + T` (Ubuntu Linux) and run `gulp` from there. You should see a few lines describing that Gulp is running the `default` task, which is how it converts Archie to JSON.
 
