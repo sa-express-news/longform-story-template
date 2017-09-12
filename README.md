@@ -246,7 +246,7 @@ Hmm...It's formatted strangely, but this looks like your typical headline, subhe
 
 `byline: Kia Farhang`
 
-Save the file, then get back on the terminal in the root of the project. If you've still got that `npm run start` running the story in your browser, no worries - just open up a new terminal tab or window and navigate back to the root. (You can run multiple terminal screens at once.)
+Save the file, then get back on the terminal in the root of the project. If you've still got that `npm run start` running the story in your browser, no worries - just open up a new terminal tab or window and navigate back to the story folder. (You can run multiple terminal screens at once.)
 
 The command to retranslate our ArchieML is `gulp` because...We're using [the Gulp JavaScript task runner](https://gulpjs.com/) to do it. (Yeah, I wish there was a more exciting reason) So run that command:
 
@@ -607,6 +607,25 @@ link: https://myaccount.expressnews.com/dssSubscribe.aspx?pid=889&z=00000
 
 The heading and flavor text are set for you, so all you need is a link from an EP like Graham Watson-Ringo. Remember to swap this out every time - it's a unique link to track subscriptions from _this_ story, so it wouldn't do much good to use the same one across many stories.
 
+#### iFrames ####
+
+Need to embed a map or chart from a third-party tool? If you've got an iFrame, it's easy. This has currently only been tested with Carto maps; if you try something else (like Datawrapper) and things get weird, ping Kia and he'll help you out.
+
+Let's get to the Archie code for iFrames:
+
+```
+{.iframe}
+source: https://amillerbernd.carto.com/builder/f770f2cf-354d-4ba2-8007-36d4c6153c19/embed
+```
+
+Note that the source of an iFrame is strictly that link. Many tools will give you something like this when you ask for an embed code:
+
+```html
+ <iframe width="100%" height="520" frameborder="0" src="https://amillerbernd.carto.com/builder/f770f2cf-354d-4ba2-8007-36d4c6153c19/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe> 
+```
+
+We don't want all the extraneous stuff; just pluck the `src` link for your Archie file.
+
 #### Credits ####
 
 We use credits at the very end of the last section of a story. This is an array, not an object, so remember to use `[]` instead of `{}`. Every credit gets added to a sleek little box and bolded.
@@ -850,3 +869,28 @@ Remember, it takes 30+ minutes for that version to update with the most recent c
 `http://preview.cmf.expressnews.com/YOUR-STORY-LINK/`
 
 If the changes _do_ reflect there, nothing to worry about - you're just waiting for the live page to catch up.
+
+__The `gulp` command isn't doing anything!__
+
+Does your terminal window look like this?
+
+```bash
+Compiled successfully!
+
+The app is running at:
+
+  http://localhost:3000/
+
+Note that the development build is not optimized.
+To create a production build, use yarn run build.
+
+gulp
+```
+
+If so, gulp isn't working because you're already running the `npm run start` process in the current terminal window. You _could_ use `CTRL + C` or `CMD + C` to stop the process, but then you'd have to restart it after `gulp`ing.
+
+Instead, open a new terminal tab by pressing `CMD + T` (Mac) or `CMD + Shift + T` (Ubuntu Linux) and run `gulp` from there. You should see a few lines describing that Gulp is running the `default` task, which is how it converts Archie to JSON.
+
+__I closed the story in my browser! How do I get it back?__
+
+No worries - you can access it like a web page by visiting `http://localhost:3000` while `npm run start` is running on your computer.
