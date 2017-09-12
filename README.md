@@ -27,6 +27,7 @@ The template uses [ArchieML](http://archieml.org/), a text format created by the
 Sound confusing? It can be at first. Luckily, the project knows where to look for these files, and most of the work takes just a few commands. However, you will need a few things to make this process run smoothly:
 
 - A rudimentary understanding of code (you'll be following instructions, so don't worry too much about this)
+- Working knowledge of the command line (consider running through the [Codecademy command line course](https://www.codecademy.com/learn/learn-the-command-line) when you have time.)
 - The ability to install programs on your computer (sorry, Windows users on Hearst machines!)
 - All of the photos+text+other assets for the story you're working with (You can add more later, but it's simpler to do it all at once)
 - Patience. Things _will_ go wrong your first time, so try to budget an afternoon to work through this guide.
@@ -100,6 +101,8 @@ Use `cd ../` to move up one level if you go too far:
 ~Desktop/Code/Projects/$ cd ../
 ~Desktop/Code/$ yeah, this is good.
 ```
+
+_Note - these are merely examples of navigating the command line and likely won't work directly on your machine._
 
 Note that it doesn't really _matter_ where you clone the repo, as long as it's a place you can access whenever you need to. We'll run the clone command like so:
 
