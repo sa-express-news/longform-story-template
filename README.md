@@ -90,16 +90,16 @@ Once you're a member of the organization, head to [the longform template reposit
 Head back to the command line, and work to the directory where you want to create the story folder. You can use `cd` to move from one folder to another:
 
 ```
-~/Desktop/$ cd Code
-~Desktop/Code/$ cd Projects
-~Desktop/Code/Projects/$ now we're where we want to be!
+cd Code
+cd Projects
+now we're where we want to be!
 ```
 
 Use `cd ../` to move up one level if you go too far:
 
 ```
-~Desktop/Code/Projects/$ cd ../
-~Desktop/Code/$ yeah, this is good.
+cd ../
+yeah, this is good.
 ```
 
 _Note - these are merely examples of navigating the command line and likely won't work directly on your machine._
@@ -124,7 +124,7 @@ Checking connectivity... done.
 
 Success! Now we can `cd` into the story folder.
 
-`~Desktop/Code/$ cd my-awesome-story`
+`cd my-awesome-story`
 
 ### Creating a New Repository ###
 
@@ -144,21 +144,21 @@ Head back to the command line. Before pushing to the new GitHub repository we cr
 
 When you're in your story repo, run the following command:
 
-`Desktop/Code/my-awesome-story/$ git remote rm origin`
+`git remote rm origin`
 
 This says, "Remove (rm) the remote repository known as origin from your memory." To be sure it worked, run this command to show all your remotes:
 
-`Desktop/Code/my-awesome-story/$ git remote -v`
+`git remote -v`
 
-Nothing should happen when you hit enter. That's great! Now we can add the repo we just created on GitHub as the remote origin. This was my command:
+Nothing should happen when you hit enter. That's great! Now we can add the repo we just created on GitHub as the remote origin. This was my command (__DON'T USE THIS, IT'S AN EXAMPLE - SEE BELOW__:
 
-`Desktop/Code/my-awesome-story/$ git remote add origin https://github.com/sa-express-news/my-awesome-story.git`
+`git remote add origin https://github.com/sa-express-news/my-awesome-story.git`
 
 You'll want to look at the section on the GitHub page you just created that says "push an existing repository" to get the exact link to your repo instead of `https://github.com/sa-express-news/my-awesome-story.git`.
 
 One last step: let's push all the work we've done so far up to GitHub. Run the following command:
 
-`Desktop/Code/my-awesome-story/$ git push -u origin master`
+`git push -u origin master`
 
 The command line should ask for your GitHub username. Enter it, then press enter. It'll ask for your password. Don't freak out if you don't see it show up as you type: it purposely hides the text so someone looking over your shoulder can't see it.
 
@@ -194,7 +194,7 @@ Okay, thus ends our long detour into Git basics. Let's actually build a longform
 
 Our project - like just about anything built with Node.js - relies on dozens of third-party "packages" to run properly. These handle all kinds of background processes, and we won't be able to build a longform story without them. Luckily, installing them is super simple. There's a file in our repository that tells NPM, the Node Package Manager, which packages are needed. Enter the root directory of your repository and run the following command:
 
-`Desktop/Code/my-awesome-story/$ npm install`
+`npm install`
 
 You'll start to see a progress bar fill up - this is tracking NPM's installation of all the necessary packages. You may want to grab coffee or take a walk; on a slow machine this installation can take a couple of minutes.
 
@@ -246,13 +246,11 @@ Hmm...It's formatted strangely, but this looks like your typical headline, subhe
 
 `byline: Kia Farhang`
 
-Save the file, then get back on the terminal in the root of the project. If you've still got that `npm run start` running the story in your browser, no worries - just open up a new terminal tab or window and navigate back to the root. You can run multiple terminal screens at once:
-
-`Desktop/Code/my-awesome-story/$`
+Save the file, then get back on the terminal in the root of the project. If you've still got that `npm run start` running the story in your browser, no worries - just open up a new terminal tab or window and navigate back to the root. (You can run multiple terminal screens at once.)
 
 The command to retranslate our ArchieML is `gulp` because...We're using [the Gulp JavaScript task runner](https://gulpjs.com/) to do it. (Yeah, I wish there was a more exciting reason) So run that command:
 
-`Desktop/Code/my-awesome-story/$ gulp`
+`gulp`
 
 And either head back to your tab with the story open or re-run `npm run start` if you stopped the process. (If you stopped the process but left the tab open, it won't update - so close that tab and let Node open a new one for you).
 
@@ -418,15 +416,15 @@ This is the first time we'll use one of the photo links we created from the WCM.
 
 Now's probably a good time to commit the changes we've made so far. Open up a new terminal in the root of your project folder and add all your files to the staging area:
 
-`Desktop/Code/my-awesome-story/$ git add .`
+`git add .`
 
 And commit your changes, leaving a message noting what you've done:
 
-`Desktop/Code/my-awesome-story/$ git commit -m "Set story metadata and lead image"`
+`git commit -m "Set story metadata and lead image"`
 
 Don't forget to push your changes to GitHub!
 
-`Desktop/Code/my-awesome-story/$ git push origin master`
+`git push origin master`
 
 ### The First Section ###
 
@@ -521,11 +519,11 @@ Rinse and repeat this process until you've added all the text into the story. Ru
 
 Looking good? Alright, let's commit to GitHub.
 
-`Desktop/Code/my-awesome-story/$ git add .`
+`git add .`
 
-`Desktop/Code/my-awesome-story/$ git commit -m "Added all story text"`
+`git commit -m "Added all story text"`
 
-`Desktop/Code/my-awesome-story/$ git push origin master`
+`git push origin master`
 
 Now comes the good part. We're going to start back at the top of the story, adding photos and pull quotes and other goodies to make the presentation really shine.
 
@@ -628,11 +626,11 @@ And just like that, we're (mostly) done building our freeform story. Pull an `np
 
 Let's commit our work before making a few last tweaks.
 
-`Desktop/Code/my-awesome-story/$ git add .`
+`git add .`
 
-`Desktop/Code/my-awesome-story/$ git commit -m "Added photos and other components"`
+`git commit -m "Added photos and other components"`
 
-`Desktop/Code/my-awesome-story/$ git push origin master`
+`git push origin master`
 
 #### Adding the Footer Subscribe Link ####
 
@@ -666,11 +664,11 @@ Save this file and close it without making any other changes. Reload the story a
 
 Commit time!
 
-`Desktop/Code/my-awesome-story/$ git add .`
+`git add .`
 
-`Desktop/Code/my-awesome-story/$ git commit -m "Added footer subscribe link"`
+`git commit -m "Added footer subscribe link"`
 
-`Desktop/Code/my-awesome-story/$ git push origin master`
+`git push origin master`
 
 #### Creating a Project Folder on AWS ####
 
@@ -696,11 +694,11 @@ This is the URL to the S3 bucket where our story will be hosted. _Nothing will w
 
 We're about to throw our story on S3 (and then the WCM), so it's time for a Git commit:
 
-`Desktop/Code/my-awesome-story/$ git add .`
+`git add .`
 
-`Desktop/Code/my-awesome-story/$ git commit -m "Set S3 path"`
+`git commit -m "Set S3 path"`
 
-`Desktop/Code/my-awesome-story/$ git push origin master`
+`git push origin master`
 
 #### Building and Hosting the Project ####
 
