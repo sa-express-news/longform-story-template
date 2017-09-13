@@ -1,18 +1,46 @@
-/* .C3Container{
-    margin: 0 auto;
-    width: 95%;
-} */
+.C3Container{
+    margin: 1.25em auto;
+}
+
+
+.C3-Container p{
+    color: #000;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.C3-Chart{
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+.C3-Title{
+    font-family: 'Suez One', serif;
+}
+
+
+.C3-Source, .C3-Credit{
+    font-family: 'Sanchez', serif;
+    font-size: 14px;
+} 
+
+@media (max-width: 767px){
+    .C3-Container p{
+        margin: 0 auto;
+        width: 85%;
+    }
+}
 
 @media (min-width: 768px){
-    .C3Container{
+    .C3-Container{
         margin: 0 auto;
-        width: 80%;
+        width: 70%;
     }
 }
 
 @media (min-width: 1024px){
-        .C3Container{
+        .C3-Container{
         margin: 0 auto;
-        width: 56%;
+        width: 50%;
     }
 }

@@ -82,7 +82,7 @@ export default {
 		return <Video src={video.source} autoPlay={video.autoplay} muted={video.muted} loop={video.loop} controls={video.controls} />
 	},
 
-	c3: (object: Object, key: number) => <C3Container id={object.value.id} title={object.value.title} chatter={object.value.chatter} source={object.value.chatter} credit={object.value.credit} key={key} />,
+	c3: (object: Object, key: number) => <C3Container id={object.value.id} title={object.value.title} chatter={object.value.chatter} source={object.value.source} credit={object.value.credit} key={key} />,
 
 	renderComponent: function (object: Object, key: number) {
 		return object.type && this[object.type] ? this[object.type](object, key) : null;

@@ -626,6 +626,54 @@ Note that the source of an iFrame is strictly that link. Many tools will give yo
 
 We don't want all the extraneous stuff; just pluck the `src` link for your Archie file.
 
+#### c3 Charts/Graphs ####
+
+You can embed c3 charts and other graphics into the story template - though it takes a bit of work. It's worth considering whether a screenshot of your c3 graphic would tell the story just as well as a dynamic graphic would.
+
+Here's the syntax to add C3 to your `/aml` file:
+
+```
+{.c3}
+id: myChart
+title: Top Texas defense spending locations (billions)
+chatter: Bexar County is second in defense spending only to Tarrant County.
+source: Pentagon Office of Economic Adjustment
+credit: Annie Millerbernd
+{}
+```
+
+Looks pretty standard - you need a title, chatter, source and credit for graphics, just like you would add anywhere. You also need to pass along an `id` - this is the ID c3 will look for to append your chart. Note that this should be _unique_ - it won't work properly if you add two charts with the same ID.
+
+If you add this to your `.aml` file and run `gulp`, you'll see everything in the story except the chart. That's because we still need to add the code to run c3. Open up `public/index.html` and I'll show you how.
+
+If you've ever built or maintained a website, this should look like a pretty standard "index" page. At the top you'll see some links to various CSS and JavaScript files, followed by `<head>` and `<body>` tags. This is the skeleton page that hosts all our React code and builds the template.
+
+Scroll to the bottom and look for a `<script>` tag that contains the following:
+
+```javascript
+window.setTimeout(function(){
+    //PUT YOUR C3 CODE HERE
+}, 2000);
+``` 
+
+This is our workaround for the fact that c3 doesn't play 100% nice with React. We're setting a timeout that says, "After 2 seconds, run this code." If you paste the code you used to create your c3 chart in the noted area, it will render your chart.
+
+So you'd want the code to look like this:
+
+```javascript
+window.setTimeout(function(){
+    var chart = c3.generate({
+        bindTo: '#myChart',
+        data: {
+            //etc. etc.
+        }
+    });
+}, 2000);
+```
+Notice that I set `bindTo` to the ID I added in the `story.aml` file - that's how we tell c3 to target the right HTML element.
+
+That should get your chart working nicely in the template. Unfortunately, it _doesn't_ get it working in the WCM. I'll repeat instructions for how to do that when we get to that section of the tutorial, but basically you just need to copy the entire `<script>` tag containing the above code and drop it into the freeform you create. 
+
 #### Credits ####
 
 We use credits at the very end of the last section of a story. This is an array, not an object, so remember to use `[]` instead of `{}`. Every credit gets added to a sleek little box and bolded.
@@ -772,6 +820,9 @@ Here's what mine looks like to start:
     }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Sanchez%7CSuez+One" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.17/c3.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.17/c3.min.js"></script>
 <link href="//projects.expressnews.com.s3-website-us-east-1.amazonaws.com/40-days-mourning-story/static/css/main.141dd7d2.css"
     rel="stylesheet">
 <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -787,6 +838,21 @@ We need to change two things: the `<link>` tag to the project CSS and the `<scri
 
 ```html
 <script type="text/javascript" src="http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/S3-FOLDER HERE/static/js/main.JS FILE NAME.js"></script>
+```
+
+*Note - did you add any c3 charts to the story? If so, open up `public/index.html` and copy the `<script>` tag containing that `window.setTimeout` code we messed with earlier and drop the whole thing at the bottom of the freeform, like so:*
+
+```html
+<script>
+window.setTimeout(function(){
+    var chart = c3.generate({
+        bindTo: '#myChart',
+        data: {
+            //etc. etc.
+        }
+    });
+}, 2000);
+  </script>
 ```
 
 Pop your edited HTML back into the freeform, save and publish it. Time to make a site section.
