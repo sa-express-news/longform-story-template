@@ -2,16 +2,24 @@
 
 import React from 'react';
 
+type Data = {
+    title: string,
+    chatter: string,
+    id: string,
+    source: string,
+    credit: string
+};
+
 import './C3Container.css';
 
-const C3Container = (props) => {
+const C3Container = ({ data }: { data: Data }) => {
     return (
         <div className='C3-Container'>
-            <p className='C3-Title'>{props.title}</p>
-            <p className='C3-Chatter'>{props.chatter}</p>
-            <div className='C3-Chart' id={props.id} />
-            <p className='C3-Source'>Source: {props.source}</p>
-            <p className='C3-Credit'>Graphic by {props.credit}</p>
+            <p className='C3-Title'>{data.title}</p>
+            <p className='C3-Chatter'>{data.chatter}</p>
+            <div className='C3-Chart' id={data.id} />
+            <p className='C3-Source'>Source: {data.source}</p>
+            <p className='C3-Credit'>Graphic by {data.credit}</p>
         </div>
     )
 }
