@@ -15,12 +15,18 @@
 
 @media (min-width: 768px){
     .FactBox{
-        width: 70%;
+        margin-top: 0;
+        float: left;
+        margin-left: 15%;
+        margin-right: 2%;
+        width: 35%;
     }
 }
 
 @media (min-width: 1024px){
     .FactBox{
-        width: 50%;
+        clear: both;
+        margin-left: 25%;
+        width: 25%;
     }
 }

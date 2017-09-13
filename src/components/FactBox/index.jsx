@@ -1,8 +1,8 @@
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import Fact from '../Fact';
-import LeftYellowBorder from '../LeftYellowBorder';
+// import LeftYellowBorder from '../LeftYellowBorder';
 
 import './FactBox.css';
 
@@ -19,11 +19,11 @@ const FactBox = (props: Props) => {
 
     return (
         <div className='FactBox'>
-            <LeftYellowBorder>
-                <p className='FactBox-Title'>{props.title}</p>
-                {facts}
-                <p className='FactBox-Source'>Source: {props.source}</p>
-            </LeftYellowBorder>
+            {/* <LeftYellowBorder> */}
+            <p className='FactBox-Title'>{props.title}</p>
+            {facts}
+            <p className='FactBox-Source'>Source: {props.source}</p>
+            {/* </LeftYellowBorder> */}
         </div>
     )
 }

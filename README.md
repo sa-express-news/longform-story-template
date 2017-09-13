@@ -675,6 +675,32 @@ Notice that I set `bindto` to the ID I added in the `story.aml` file - that's ho
 
 That should get your chart working nicely in the template. Unfortunately, it _doesn't_ get it working in the WCM. I'll repeat instructions for how to do that when we get to that section of the tutorial, but basically you just need to copy the entire `<script>` tag containing the above code and drop it into the freeform you create. 
 
+#### Fact Box ####
+
+Fact boxes are a great way to pull out important numbers - almost like pullquotes for data. Fact boxes in the story template also share some aesthetic similarities with pull quotes. They're full-width on mobile screens, then on screen widths considered tablet-size and above fact boxes float to the left of text.
+
+Here's the `.aml` code for a fact box:
+
+```
+{.factBox}
+title: Joint Base San Antonio: By The Numbers
+source: Joint Base San Antonio
+[.facts]
+number: 55,760
+text: Military Personnel
+
+number: $3.7 billion
+text: Military Payroll
+
+number: 31,624
+text: Civilian Personnel
+
+[]
+{}
+```
+
+Bit fancy, no? We're nesting an array _within_ an object here, but it's not as weird as it looks. First, give your fact box a title and source like you would for other components. Then create a `[.facts]` property - and remember to close it with a `[]`. Add as many pairings of `number` and `text` between the `[.facts]` and `[]` blocks that you'd like.
+
 #### Credits ####
 
 We use credits at the very end of the last section of a story. This is an array, not an object, so remember to use `[]` instead of `{}`. Every credit gets added to a sleek little box and bolded.
