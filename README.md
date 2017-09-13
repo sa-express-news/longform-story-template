@@ -664,14 +664,14 @@ So you'd want the code to look like this:
 ```javascript
 window.setTimeout(function(){
     var chart = c3.generate({
-        bindTo: '#myChart',
+        bindto: '#myChart',
         data: {
             //etc. etc.
         }
     });
 }, 2000);
 ```
-Notice that I set `bindTo` to the ID I added in the `story.aml` file - that's how we tell c3 to target the right HTML element.
+Notice that I set `bindto` to the ID I added in the `story.aml` file - that's how we tell c3 to target the right HTML element.
 
 That should get your chart working nicely in the template. Unfortunately, it _doesn't_ get it working in the WCM. I'll repeat instructions for how to do that when we get to that section of the tutorial, but basically you just need to copy the entire `<script>` tag containing the above code and drop it into the freeform you create. 
 
