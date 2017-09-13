@@ -616,6 +616,7 @@ Let's get to the Archie code for iFrames:
 ```
 {.iframe}
 source: https://amillerbernd.carto.com/builder/f770f2cf-354d-4ba2-8007-36d4c6153c19/embed
+{}
 ```
 
 Note that the source of an iFrame is strictly that link. Many tools will give you something like this when you ask for an embed code:
@@ -630,7 +631,7 @@ We don't want all the extraneous stuff; just pluck the `src` link for your Archi
 
 You can embed c3 charts and other graphics into the story template - though it takes a bit of work. It's worth considering whether a screenshot of your c3 graphic would tell the story just as well as a dynamic graphic would.
 
-Here's the syntax to add C3 to your `/aml` file:
+Here's the syntax to add C3 to your `.aml` file:
 
 ```
 {.c3}
