@@ -26,21 +26,21 @@
 
 @media (max-width: 767px){
     .C3-Container p{
-        margin: 0 auto;
+        margin: 1.25em auto;
         width: 85%;
     }
 }
 
 @media (min-width: 768px){
     .C3-Container{
-        margin: 0 auto;
+        margin: 1.25em auto;
         width: 70%;
     }
 }
 
 @media (min-width: 1024px){
         .C3-Container{
-        margin: 0 auto;
+        margin: 1.25em auto;
         width: 50%;
     }
 }
