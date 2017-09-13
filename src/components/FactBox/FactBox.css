@@ -1,0 +1,26 @@
+.FactBox{
+    margin: 1.25em auto;
+    width: 85%;
+}
+
+.FactBox-Title{
+    font-family: 'Suez One', serif;
+}
+
+.FactBox-Source{
+    color: #000;
+    font-family: 'Sanchez', serif;
+    font-size: 14px; 
+}
+
+@media (min-width: 768px){
+    .FactBox{
+        width: 70%;
+    }
+}
+
+@media (min-width: 1024px){
+    .FactBox{
+        width: 50%;
+    }
+}
