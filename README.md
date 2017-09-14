@@ -987,3 +987,7 @@ Instead, open a new terminal tab by pressing `CMD + T` (Mac) or `CMD + Shift + T
 __I closed the story in my browser! How do I get it back?__
 
 No worries - you can access it like a web page by visiting `http://localhost:3000` while `npm run start` is running on your computer.
+
+__`npm run build` isn't working.__
+
+Are you also running `npm run start`? You can't run both at the same time - so try closing any terminal windows that are running `npm run start` and giving `npm run build` another shot.
