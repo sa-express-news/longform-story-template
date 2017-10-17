@@ -4,6 +4,7 @@
   "private": true,
   "s3Bucket": "http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/longform-template",
   "devDependencies": {
+    "archieml": "^0.4.2",
     "autoprefixer": "6.7.2",
     "babel-core": "6.22.1",
     "babel-eslint": "7.1.1",
@@ -30,7 +31,6 @@
     "fs-extra": "0.30.0",
     "grommet": "^1.4.1",
     "gulp": "^3.9.1",
-    "gulp-archieml": "^1.0.0",
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.3",
     "jest": "18.1.0",
@@ -52,6 +52,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.5.2",
+    "c3": "^0.4.18",
     "flow-bin": "^0.47.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
@@ -106,5 +107,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
 }

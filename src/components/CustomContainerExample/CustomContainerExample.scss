@@ -1,0 +1,48 @@
+.WealthMap {
+    margin: 2em auto;
+
+    p {
+        color: #000;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        @media (max-width: 767px) {
+            margin: 1.25em auto;
+            width: 85%;
+        }
+    }
+
+    .images {
+        margin-top: .5em;
+        margin-bottom: .5em;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        @media (min-width: 1024px) {
+            height: 50%;
+        }
+
+    }
+
+    .title {
+        font-family: 'Suez One', serif;
+    }
+
+    .source, .credit {
+        font-family: 'Sanchez', serif;
+        font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    @media (min-width: 1024px) {
+        margin: 0 auto 2vh;
+        width: 50%;
+    }
+}

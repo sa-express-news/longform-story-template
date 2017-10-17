@@ -22,6 +22,7 @@ import Video from '../Video';
 import Credits from '../Credits';
 import C3Container from '../C3Container';
 import FactBox from '../FactBox';
+import CustomContainer from '../CustomContainer';
 
 // const loadPhoto = (path: string) => {
 // 	return require(`${path}`);
@@ -86,6 +87,8 @@ export default {
 	c3: (object: Object, key: number) => <C3Container data={object.value} key={key} />,
 
 	factBox: (object: Object, key: number) => <FactBox title={object.value.title} source={object.value.source} facts={object.value.facts} key={key} />,
+
+	customcontainer: (object: Object, key: number) => <CustomContainer {...object.value} key={key} />,
 
 	renderComponent: function (object: Object, key: number) {
 		return object.type && this[object.type] ? this[object.type](object, key) : null;
