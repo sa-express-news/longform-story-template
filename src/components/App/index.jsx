@@ -6,7 +6,7 @@ import StoryTopContainer from '../StoryTopContainer';
 import Sections from '../Sections';
 import SubscribeFooter from '../SubscribeFooter';
 
-import Story from '../../story.json';
+import Story from '../../story.aml';
 import './App.css';
 
 class App extends Component {

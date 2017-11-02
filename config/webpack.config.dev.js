@@ -7,7 +7,7 @@ var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
-var path = require('path');
+var path  = require('path');
 var paths = require('./paths');
 
 
@@ -115,7 +115,8 @@ module.exports = {
           /\.css$/,
           /\.json$/,
           /\.svg$/,
-          /\.scss$/
+          /\.scss$/,
+          /\.aml$/
         ],
         loader: 'url',
         query: {
@@ -172,6 +173,11 @@ module.exports = {
         query: {
           name: 'static/media/[name].[hash:8].[ext]'
         }
+      },
+      // archieML files
+      {
+        test: /\.aml$/,
+        loader: path.resolve('./config/archieml-loader')
       }
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "url" loader exclusion list.
