@@ -246,17 +246,11 @@ Hmm...It's formatted strangely, but this looks like your typical headline, subhe
 
 `byline: Kia Farhang`
 
-Save the file, then get back on the terminal in the root of the project. If you've still got that `npm run start` running the story in your browser, no worries - just open up a new terminal tab or window and navigate back to the story folder. (You can run multiple terminal screens at once.)
-
-The command to retranslate our ArchieML is `gulp` because...We're using [the Gulp JavaScript task runner](https://gulpjs.com/) to do it. (Yeah, I wish there was a more exciting reason) So run that command:
-
-`gulp`
-
-And either head back to your tab with the story open or re-run `npm run start` if you stopped the process. (If you stopped the process but left the tab open, it won't update - so close that tab and let Node open a new one for you).
+Save the file. Assuming you've still got `npm run start` running, the story should automatically reload in your browser. If you don't, just run `npm run start` again and the tab should open in your browser.
 
 Take a look below the headline and subhead for the story. You should see _your_ name where it used to have Adam's. Congrats, you just started building your own longform story!
 
-You can follow this flow with all of the edits you make: edit the `story.aml` file, run `gulp` on the command line, and watch your changes take effect. The rest of this process is just knowing how to structure your edits so they pull into the app properly. Before we start, though, we need to make sure we've got our assets ready.
+You can follow this flow with all of the edits you make: edit the `story.aml` file and watch your changes take effect. The rest of this process is just knowing how to structure your edits so they pull into the app properly. Before we start, though, we need to make sure we've got our assets ready.
 
 ## Asset Check ##
 
@@ -515,7 +509,7 @@ etc., etc.
 []
 ```
 
-Rinse and repeat this process until you've added all the text into the story. Run `gulp` on the command line to generate a new JSON file containing your story. Check your browser, doing an `npm run start` if necesssary, and you should see one verrrrrry long story punctured with the occasional red, bolded subheadings.
+Rinse and repeat this process until you've added all the text into the story. Check your browser, doing an `npm run start` if necessary, and you should see one verrrrrry long story punctured with the occasional red, bolded subheadings.
 
 Looking good? Alright, let's commit to GitHub.
 
@@ -629,7 +623,7 @@ We don't want all the extraneous stuff; just pluck the `src` link for your Archi
 
 #### c3 Charts/Graphs ####
 
-You can embed c3 charts and other graphics into the story template - though it takes a bit of work. It's worth considering whether a screenshot of your c3 graphic would tell the story just as well as a dynamic graphic would.
+You can embed c3 charts and other graphics into the story template.
 
 Here's the syntax to add C3 to your `.aml` file:
 
@@ -645,35 +639,41 @@ credit: Annie Millerbernd
 
 Looks pretty standard - you need a title, chatter, source and credit for graphics, just like you would add anywhere. You also need to pass along an `id` - this is the ID c3 will look for to append your chart. Note that this should be _unique_ - it won't work properly if you add two charts with the same ID.
 
-If you add this to your `.aml` file and run `gulp`, you'll see everything in the story except the chart. That's because we still need to add the code to run c3. Open up `public/index.html` and I'll show you how.
-
-If you've ever built or maintained a website, this should look like a pretty standard "index" page. At the top you'll see some links to various CSS and JavaScript files, followed by `<head>` and `<body>` tags. This is the skeleton page that hosts all our React code and builds the template.
-
-Scroll to the bottom and look for a `<script>` tag that contains the following:
+If you add this to your `.aml` file you'll see everything in the story except the chart. That's because we still need to add the code to run c3. If you have never worked with c3 before, visit the [c3 homepage](http://c3js.org/) and familiarize yourself with the library. If you have, you should be familiar with this syntax:
 
 ```javascript
-window.setTimeout(function(){
-    //PUT YOUR C3 CODE HERE
-}, 2000);
-``` 
-
-This is our workaround for the fact that c3 doesn't play 100% nice with React. We're setting a timeout that says, "After 2 seconds, run this code." If you paste the code you used to create your c3 chart in the noted area, it will render your chart.
-
-So you'd want the code to look like this:
-
-```javascript
-window.setTimeout(function(){
-    var chart = c3.generate({
-        bindto: '#myChart',
-        data: {
-            //etc. etc.
-        }
-    });
-}, 2000);
+var chart = c3.generate({
+    bindto: '#myChart',
+    data: {
+        //etc. etc.
+    }
+});
 ```
-Notice that I set `bindto` to the ID I added in the `story.aml` file - that's how we tell c3 to target the right HTML element.
 
-That should get your chart working nicely in the template. Unfortunately, it _doesn't_ get it working in the WCM. I'll repeat instructions for how to do that when we get to that section of the tutorial, but basically you just need to copy the entire `<script>` tag containing the above code and drop it into the freeform you create. 
+For our purposes, it is only the configuration object for your chart that you're going to need"
+
+```javascript
+{
+    bindto: '#myChart',
+    data: {
+        //etc. etc.
+    }
+}
+```
+
+Open up `src/c3-objects.js` and drop the c3 configuration obj into the exported object with the `id` from your `.aml` file as the object key. Like this:
+
+```javascript
+export default {
+	myChart: {
+		data: {
+	        //etc. etc.
+	    },
+	}
+}
+```
+
+Notice, again that the object key `myChart` matches the id in the `.aml` file. We've also left out the `bindto` property, b/c the template takes care of binding on its own. You can add as many c3 configuration objects as you like and, as long as you reference them in your `.aml` file, they will appear in your story.
 
 #### Fact Box ####
 
@@ -713,6 +713,42 @@ credit: Twitter: @AZuvanich
 ```
 
 You can add as many of these as you like, should you need to credit a photographer, multiple reporters, etc. And note that you can still use a colon after the `credit:` without messing anything up - the second credit here will render on the page as `Twitter: @AZuvanich`.
+
+#### Custom Components ####
+
+If you want to add a custom, one-off component to the long form template, first consider if it is worth building a reusable component and opening a pull request in github. If not, you can follow the following procedure to build a custom element _(Note: You should be familiar with ReactJS and how to build React Components before attempting this)_:
+
+Create a new directory in `src/components` to house your custom component and name it appropriately. For this demo, we'll go with `CustomContainerExample`. For now, leave it empty.
+
+Head to the `.aml` file and, at the spot in the story you'd like your custom component to appear, add something like the following example:
+
+```
+{.customcontainer}
+component: CustomContainerExample
+title: Where people with higher salaries live in Kendall County
+chatter: This animated map shows where residents earning salaries more than $75,000 a year lived in Kendall County, comparing the years 2010 and 2015.
+source: American Community Survey (ACS), 2015
+credit: Luke Whyte | Express-News Data Team
+[.images]
+* http://ww4.hdnux.com/photos/66/26/47/14248435/7/rawImage.png
+* http://ww3.hdnux.com/photos/66/26/47/14248434/7/rawImage.png
+[]
+{}
+```
+
+Note that the `component` property points to the directory we created to house our custom component. All the other properties – `title`, `chatter`, etc – will be passed in as props to `CustomComponentExample`. E.g.: `this.props.title`, `this.props.chatter`.
+
+Now open `src/components/CustomContainer/components.js`. In here we are simply going to import and export each of our custom components for use by the loader. Here's how to do that:
+
+```javascript
+import CustomContainerExample from '../CustomContainerExample';
+
+export default {
+	CustomContainerExample,
+};
+```
+
+Finally, head back to your custom component directory (in my case, `CustomContainerExample`) and build your `index.jsx` file and any stylesheets. Remember, props will be passed in from `.aml`.
 
 ### Final Touches ###
 
@@ -907,7 +943,6 @@ Add your freeform underneath the CSS overrides one, save the section and preview
 You will invariably need to edit this story. Someone will notice a typo; someone's name will be misspelled; someone will ask you to add a couple photos at the last minute. Making edits is easy, if somewhat tedious. Here's the process:
 
 1. Open `story.aml` and make whatever changes are needed.
-2. Run `gulp` on the command line to transform the ArchieML into JSON.
 3. (Optional but recommended) do an `npm run start` to make sure the story looks right on your machine after the changes.
 4. Commit your changes to GitHub.
 5. Run `npm run build` and wait for it to rebuild your `build` folder. Keep track of the names of the CSS and JS files created.
@@ -937,7 +972,7 @@ export default () => (
   </div>
 ); 
 ```
-Change those last three links to the URL of your story. Then run the update process: `gulp`, `npm run start` to test the changes, commit the changes to GitHub, `npm run build` to create new files, upload to S3, update the freeform, make sure all is well with the section preview.
+Change those last three links to the URL of your story. Then run the update process: `npm run start` to test the changes, commit the changes to GitHub, `npm run build` to create new files, upload to S3, update the freeform, make sure all is well with the section preview.
 
 ### Adding the Story to the Home Page ###
 
@@ -953,7 +988,7 @@ Click the "Build freeform" button and copy the code that spits out. Now go _back
 
 __I don't see my changes reflected in the story!__
 
-Did you remember to transform your ArchieML into JSON with `gulp`? None of the changes you make to `story.aml` will show up without that step. Head to the root of your project on the command line and type `gulp`. Re-run `npm run start` (or let it recompile the app if it's already running) and your changes should take.
+Re-run `npm run start` (or let it recompile the app if it's already running) and your changes should take.
 
 __The page on the EN website is showing an old version of the story!__
 
@@ -962,27 +997,6 @@ Remember, it takes 30+ minutes for that version to update with the most recent c
 `http://preview.cmf.expressnews.com/YOUR-STORY-LINK/`
 
 If the changes _do_ reflect there, nothing to worry about - you're just waiting for the live page to catch up.
-
-__The `gulp` command isn't doing anything!__
-
-Does your terminal window look like this?
-
-```bash
-Compiled successfully!
-
-The app is running at:
-
-  http://localhost:3000/
-
-Note that the development build is not optimized.
-To create a production build, use yarn run build.
-
-gulp
-```
-
-If so, Gulp isn't working because you're already running the `npm run start` process in the current terminal window. You _could_ use `CTRL + C` or `CMD + C` to stop the process, but then you'd have to restart it after `gulp`ing.
-
-Instead, open a new terminal tab by pressing `CMD + T` (Mac) or `CMD + Shift + T` (Ubuntu Linux) and run `gulp` from there. You should see a few lines describing that Gulp is running the `default` task, which is how it converts Archie to JSON.
 
 __I closed the story in my browser! How do I get it back?__
 
