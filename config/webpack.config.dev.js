@@ -131,12 +131,7 @@ module.exports = {
         'includePaths[]=' +
         (encodeURIComponent(
           path.resolve(process.cwd(), './node_modules')
-        )) +
-        '&includePaths[]=' +
-        (encodeURIComponent(
-            path.resolve( process.cwd(),
-              './node_modules/grommet/node_modules'))
-        )
+        ))
       },
       // Process JS with Babel.
       {

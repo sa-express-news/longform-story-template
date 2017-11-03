@@ -654,10 +654,9 @@ For our purposes, it is only the configuration object for your chart that you're
 
 ```javascript
 {
-    bindto: '#myChart',
     data: {
         //etc. etc.
-    }
+	}
 }
 ```
 
@@ -668,7 +667,7 @@ export default {
 	myChart: {
 		data: {
 	        //etc. etc.
-	    },
+		},
 	}
 }
 ```
@@ -903,21 +902,6 @@ We need to change two things: the `<link>` tag to the project CSS and the `<scri
 <script type="text/javascript" src="http://projects.expressnews.com.s3-website-us-east-1.amazonaws.com/S3-FOLDER HERE/static/js/main.JS FILE NAME.js"></script>
 ```
 
-*Note - did you add any c3 charts to the story? If so, open up `public/index.html` and copy the `<script>` tag containing that `window.setTimeout` code we messed with earlier and drop the whole thing at the bottom of the freeform, like so:*
-
-```html
-<script>
-window.setTimeout(function(){
-    var chart = c3.generate({
-        bindTo: '#myChart',
-        data: {
-            //etc. etc.
-        }
-    });
-}, 2000);
-  </script>
-```
-
 Pop your edited HTML back into the freeform, save and publish it. Time to make a site section.
 
 ### Creating the Site Section ###
@@ -1005,3 +989,11 @@ No worries - you can access it like a web page by visiting `http://localhost:300
 __`npm run build` isn't working.__
 
 Are you also running `npm run start`? You can't run both at the same time - so try closing any terminal windows that are running `npm run start` and giving `npm run build` another shot.
+
+### Generating a stats.json webpack file ###
+
+If, for any number of purpose, you need to generate a webpack stats analysis file. Execute the following in the terminal from your project root directory:
+
+```
+NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config config/webpack.config.prod.js --profile --json > stats.json
+```
