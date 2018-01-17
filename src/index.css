@@ -3,3 +3,24 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+/************************************************
+ * The goal here is to make ReactJS long form
+ * stories work in a WCM article template.
+ *
+ * God help us all.
+ ************************************************/
+
+div#container { 
+ 	background: #fff;
+}
+
+div#container div#header { 
+	display: none !important;
+}
+
+div#container div.page-content div#content { 
+	width: 100% !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
