@@ -1,7 +1,6 @@
 'use strict';
 
 var autoprefixer = require('autoprefixer');
-var prefixwrap = require('./postcss-prefixwrap');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -206,7 +205,6 @@ module.exports = {
           'not ie < 9', // React doesn't support IE8 anyway
         ]
       }),
-      prefixwrap('div#container div.page-content div#content'),
     ];
   },
   plugins: [
