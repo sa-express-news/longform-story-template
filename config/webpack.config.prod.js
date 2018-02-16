@@ -113,7 +113,8 @@ module.exports = {
           /\.css$/,
           /\.json$/,
           /\.svg$/,
-          /\.scss$/
+          /\.scss$/,
+          /\.aml$/
         ],
         loader: 'url',
         query: {
@@ -176,6 +177,11 @@ module.exports = {
         query: {
           name: 'static/media/[name].[hash:8].[ext]'
         }
+      },
+       // archieML files
+      {
+        test: /\.aml$/,
+        loader: path.resolve('./config/archieml-loader')
       }
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "url" loader exclusion list.
